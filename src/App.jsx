@@ -52,72 +52,74 @@ function App() {
   };
 
   const handleEdit = (event) => {
-    setInfoToEdit(true);
-    setDisplayStyleForm("to-display");
-    setDisplayStyleResults("to-hide");
+    event.preventDefault();
+    setFormIsFilled(false);
   };
 
   return (
     <>
       <header> {formIsFilled ? "Results" : "Create Account"} </header>
 
-      <div className="container">
-        <div className={displayStyleForm}>
-          <form onSubmit={handleSubmit}>
-            <span className="desc">Name</span>
-
-            <input
-              type="text"
-              placeholder="Jean Dupont"
-              name="username"
-              onChange={handleUsernameChange}
-              value={username}
-            />
-            <span className="desc">Email</span>
-
-            <input
-              type="email"
-              placeholder="jean.dupont@lereacteur.io"
-              name="email"
-              onChange={handleEmailChange}
-              value={email}
-            />
-            <span className="desc">Password</span>
-
-            <input
-              type="password"
-              placeholder="azertyui"
-              name="password"
-              onChange={handlePasswordChange}
-              value={password}
-            />
-            <span className="desc">Confirm password</span>
-
-            <input
-              type="password"
-              placeholder="azertyui"
-              name="confirmed-password"
-              onChange={handleConfirmedPasswordChange}
-              value={confirmedPassword}
-            />
-            <input className="submit-button" type="submit" value="Register" />
-          </form>
+      {formIsFilled ? (
+        <div className="container">
+          <div>
+            <form onSubmit={handleEdit}>
+              <p> Name : {username}</p>
+              <p> Email : {email}</p>
+              <p> Password : {password}</p>
+              <input
+                className="edit-button"
+                type="submit"
+                value="Edit your information"
+              />
+            </form>
+          </div>
         </div>
-      </div>
-      <div className="container">
-        <div className={displayStyleResults}>
-          <form onSubmit={handleEdit}>
-            <p> Name : {username}</p>
-            <p> Email : {email}</p>
-            <p> Password : {password}</p>
-            <input
-              className="edit-button"
-              type="submit"
-              value="Edit your information"
-            />
-          </form>
+      ) : (
+        <div className="container">
+          <div>
+            <form onSubmit={handleSubmit}>
+              <span className="desc">Name</span>
+
+              <input
+                type="text"
+                placeholder="Jean Dupont"
+                name="username"
+                onChange={handleUsernameChange}
+                value={username}
+              />
+              <span className="desc">Email</span>
+
+              <input
+                type="email"
+                placeholder="jean.dupont@lereacteur.io"
+                name="email"
+                onChange={handleEmailChange}
+                value={email}
+              />
+              <span className="desc">Password</span>
+
+              <input
+                type="password"
+                placeholder="azertyui"
+                name="password"
+                onChange={handlePasswordChange}
+                value={password}
+              />
+              <span className="desc">Confirm password</span>
+
+              <input
+                type="password"
+                placeholder="azertyui"
+                name="confirmed-password"
+                onChange={handleConfirmedPasswordChange}
+                value={confirmedPassword}
+              />
+              <input className="submit-button" type="submit" value="Register" />
+            </form>
+          </div>
         </div>
-      </div>
+      )}
 
       <footer>
         Made with <span>React</span> at <span>Le Reacteur</span> by

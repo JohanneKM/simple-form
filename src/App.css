@@ -52,3 +52,7 @@ footer {
 footer span {
   font-weight: bold;
 }
+
+.to-hide {
+  display: none;
+}

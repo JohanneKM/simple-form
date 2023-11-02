@@ -48,13 +48,13 @@ function App() {
       setDisplayStyleResults("to-display");
     }
 
-    const handleEdit = (event) => {
-      setInfoToEdit(true);
-      setDisplayStyleForm("to-display");
-      setDisplayStyleResults("to-hide");
-    };
-
     console.log(infoToEdit);
+  };
+
+  const handleEdit = (event) => {
+    setInfoToEdit(true);
+    setDisplayStyleForm("to-display");
+    setDisplayStyleResults("to-hide");
   };
 
   return (
@@ -68,7 +68,7 @@ function App() {
 
             <input
               type="text"
-              placeholder={infoToEdit ? { username } : "Jean Dupont"}
+              placeholder="Jean Dupont"
               name="username"
               onChange={handleUsernameChange}
               value={username}
@@ -106,14 +106,16 @@ function App() {
       </div>
       <div className="container">
         <div className={displayStyleResults}>
-          <p> Name : {username}</p>
-          <p> Email : {email}</p>
-          <p> Password : {password}</p>
-          <input
-            className="edit-button"
-            type="submit"
-            value="Edit your information"
-          />
+          <form onSubmit={handleEdit}>
+            <p> Name : {username}</p>
+            <p> Email : {email}</p>
+            <p> Password : {password}</p>
+            <input
+              className="edit-button"
+              type="submit"
+              value="Edit your information"
+            />
+          </form>
         </div>
       </div>
 
